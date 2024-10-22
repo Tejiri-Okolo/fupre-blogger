@@ -19,11 +19,22 @@
     <nav>
       <div class="navbar">
         <div class="logo">STUDENT BLOGGER: FUPRE CHAPTER</div>
-        <ul>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="desktop-menu">
           <li><a href="./about.html">About</a></li>
-          <li><a id="login" href="./login.html">Login</a></li>
-          <li><a id="sign-up" href="./signup.html">Sign Up</a></li>
-          <li><button id="log-out" class="hidden">Log Out</button></li>
+          <li><a class="login" href="./login.html">Login</a></li>
+          <li><a class="sign-up" href="./signup.html">Sign Up</a></li>
+          <li class="hidden"><button class="log-out">Log Out</button></li>
+        </ul>
+        <ul class="mobile-menu">
+          <li><a href="./about.html">About</a></li>
+          <li><a class="login" href="./login.html">Login</a></li>
+          <li><a class="sign-up" href="./signup.html">Sign Up</a></li>
+          <li class="hidden"><button class="log-out">Log Out</button></li>
         </ul>
       </div>
     </nav>
@@ -37,7 +48,7 @@
           class="header-logo"
         />
         <div class="welcome-text">
-          WELCOME TO FUPRE BLOG, <br />
+          WELCOME TO FUPRE BLOG <br />
           This is the general blog page where you can find the latest updates
           and posts.
         </div>

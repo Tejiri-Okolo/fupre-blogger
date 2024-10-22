@@ -9,9 +9,9 @@ import { getUserData } from "./exports.js";
 
 const mainBar = document.querySelector(".main-bar");
 const sideBar = document.getElementById("side-bar");
-const loginBtn = document.getElementById("login");
-const signUpBtn = document.getElementById("sign-up");
-const logOutBtn = document.getElementById("log-out");
+const loginBtn = document.querySelectorAll(".login");
+const signUpBtn = document.querySelectorAll(".sign-up");
+const logOutBtn = document.querySelectorAll("log-out");
 const addPost = document.getElementById("addPost");
 const addPostMessage = document.getElementById("addPostMessage");
 const postForm = document.getElementById("post-form");
@@ -19,6 +19,7 @@ const postForm = document.getElementById("post-form");
 const postTitle = document.getElementById("title");
 const postContent = document.getElementById("content");
 const uploadPost = document.getElementById("uploadPost");
+const hamburger = document.querySelector(".hamburger");
 
 // PUPOLATING THE BLOGS
 const blogPopulator = async () => {
@@ -56,6 +57,13 @@ function loadPage() {
   const showMoreBtn = document.querySelectorAll(".show-more");
   const showLessBtn = document.querySelectorAll(".show-less");
 
+  hamburger.addEventListener("click", toggleMenuMobile);
+
+  function toggleMenuMobile() {
+    hamburger.classList.toggle("close");
+    document.querySelector("ul.mobile-menu").classList.toggle("show-menu");
+  }
+
   showMoreBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       //consolelog("clicked");
@@ -80,22 +88,26 @@ function loadPage() {
   if (getUserData()) {
     //consolelog("logged in");
     addPost.classList.remove("hidden");
-    loginBtn.classList.add("hidden");
+    loginBtn.forEach((logIn) => logIn.parentElement.classList.add("hidden"));
     addPost.classList.add("flex");
     //consolelog(loginBtn.classList);
-    signUpBtn.classList.add("hidden");
-    logOutBtn.classList.remove("hidden");
+    signUpBtn.forEach((signUp) => signUp.parentElement.classList.add("hidden"));
+    logOutBtn.forEach((logOut) =>
+      logOut.parentElement.classList.remove("hidden")
+    );
   } else {
     //consolelog("not logged in");
     addPost.classList.add("hidden");
-    loginBtn.classList.remove("hidden");
-    signUpBtn.classList.remove("hidden");
-    logOutBtn.classList.add("hidden");
+    loginBtn.forEach((logIn) => logIn.parentElement.classList.remove("hidden"));
+    signUpBtn.forEach((signUp) =>
+      signUp.parentElement.classList.remove("hidden")
+    );
+    logOutBtn.forEach((logOut) => logOut.parentElement.classList.add("hidden"));
     addPost.classList.remove("flex");
   }
 }
 
-logOutBtn.addEventListener("click", logOut);
+logOutBtn.forEach((logOut) => logOut.addEventListener("click", logOut));
 
 function logOut() {
   auth.signOut().then(() => {

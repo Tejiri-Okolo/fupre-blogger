@@ -1,10 +1,21 @@
+* {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* Global Styles */
 body {
-  font-family: "Calibri", sans-serif;
   background-color: #ffffff;
+  font-family: "Ubuntu", sans-serif;
   margin: 0;
   padding: 0;
   color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 h2,
@@ -61,11 +72,16 @@ a:hover {
   height: 100%;
 }
 
-.navbar ul {
+.navbar ul.desktop-menu {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
+}
+
+.navbar ul.mobile-menu {
+  display: none;
+  box-shadow: -1px 8px 12px #555;
 }
 
 .navbar ul li {
@@ -85,12 +101,28 @@ a:hover {
   opacity: 0.8;
 }
 
+.header-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
 .header-image .welcome-text {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  /* bottom: 20px; */
+  text-align: center;
+  font-weight: 500;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 24px;
   color: #fff;
+  z-index: 100;
 }
 
 /* Main Container Styles */
@@ -127,6 +159,7 @@ a:hover {
   color: navy;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.4;
 }
 
 .blog-flex {
@@ -223,16 +256,19 @@ a:hover {
 
 /* button */
 #addPost {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
   background-color: navy; /* Green background */
   border: none; /* Remove borders */
   color: white; /* White text */
-  /* width: 50px; /* Set the width of the button */
-  /*height: 50px;  /* Set the height of the button */
+  width: 50px; /* Set the width of the button */
+  height: 50px; /*  Set the height of the button */
   padding: 20px;
   border-radius: 50%; /* Make the button round */
-  font-size: 29px; /* Increase font size for the plus sign */
+  font-size: 29px; /* Increase font size for the plus sign
   text-align: center; /* Center the text */
-  line-height: 50%; /* Align the plus sign vertically */
+  /* line-height: 1rem; /* Align the plus sign vertically */
   cursor: pointer; /* Add a pointer on hover */
   transition: background-color 0.3s; /* Smooth transition */
   position: fixed;
@@ -241,14 +277,20 @@ a:hover {
   right: 280px;
 }
 
+.plus {
+  font-size: 30px;
+  height: 30px;
+  line-height: 1.5rem;
+}
+
 /* Add a hover effect */
 #addPost:hover {
   background-color: #3490db; /* Darker green */
   border-radius: 10px;
+  width: auto;
 }
 
-#log-out{
-
+.log-out {
   color: navy;
   background-color: transparent;
   text-transform: uppercase;
@@ -256,21 +298,18 @@ a:hover {
   font-size: larger;
 }
 
-
-.show-more{
+.show-more {
   color: navy;
   background-color: transparent;
-  
+
   border: none;
-  
 }
 
-.show-less{
+.show-less {
   color: navy;
   background-color: transparent;
-  
+
   border: none;
-  
 }
 
 /* Footer Styles */
@@ -288,26 +327,40 @@ footer {
 
 /* Media Queries */
 @media (max-width: 768px) {
-  .main-container {
+  /* .main-container {
     flex-direction: column;
-  }
+  } */
 
   .main-bar,
   .side-bar {
     width: 100%;
   }
 
-  .side-bar {
-    display: none;
-  }
-
   .header-image {
     height: 150px;
   }
 
-  .navbar ul {
+  .navbar ul.desktop-menu {
     flex-direction: column;
     align-items: center;
+    display: none;
+  }
+
+  .navbar ul.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    gap: 5px;
+    position: fixed;
+    top: 70px;
+    right: 0;
+    padding: 20px;
+    margin: 0;
+    transform: translateX(100%);
+    transition: all 700ms ease-in-out;
+    z-index: 1000;
   }
 
   .navbar ul li {
@@ -315,24 +368,103 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
-  .navbar {
-    flex-direction: column;
+.hamburger {
+  display: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.close div:first-child {
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+.close div:last-child {
+  position: absolute;
+  transform: rotate(-45deg);
+}
+
+.close div:nth-child(2) {
+  display: none;
+}
+
+@media (max-width: 50rem) {
+  div.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: max-content;
+    align-items: center;
+    width: 100%;
   }
 
+  .navbar .logo {
+    font-size: 1.5rem;
+    width: 75%;
+  }
+
+  .navbar ul {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30px;
+    height: 30px;
+  }
+
+  .hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+  }
+}
+
+@media (max-width: 50rem) {
   .header-image {
-    height: 100px;
+    height: 150px;
   }
 
   .welcome-text {
     font-size: 18px;
   }
+
+  .header-image .welcome-text {
+    font-size: 18px;
+    width: 80%;
+    font-weight: 400;
+  }
+
+  .main-container {
+    flex-direction: column;
+  }
+
+  .main-bar {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .blog-box {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .blog-flex .blog-heading {
+    font-size: 1.5rem;
+    text-wrap-style: pretty;
+  }
+
+  .blog-img {
+    height: max-content;
+    width: 60px;
+    border-radius: 20px;
+  }
 }
 
 /* utily classes */
-.hidden {
-  display: none;
-}
 
 .flex {
   display: flex;
@@ -372,6 +504,10 @@ footer {
   padding: 10px;
   min-width: 300px;
   min-height: 300px;
+}
+
+.show-menu {
+  transform: translateX(0%) !important;
 }
 
 /* .form-container {
@@ -424,3 +560,55 @@ footer {
   background-color: #f9f9f9;
   border-radius: 5px;
 } */
+
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-light-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-medium-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}

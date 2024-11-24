@@ -60,18 +60,18 @@ export async function getPosts() {
 //     show less
 //   </button>
 // </div>`;
+// `<img src="../assets/images/user2.jpeg" alt="Profile Picture" />`
 
 export const tempBlog = ({ title, displayImage, username, content, date }) => {
+  const img = document.createElement("img");
+  img.src = "./assets/images/User2.jpeg";
+  img.alt = "Profile Picture";
   return `
   <div class="blog-box">
     <div class="blog-flex">
     <h2 class="blog-heading">${title}</h2>
     <div class="blog-img">
-      ${
-        displayImage
-          ? `<img src=${displayImage} alt=''/>`
-          : `<img src="./assets/images/user2.jpeg" alt="Profile Picture" />`
-      }
+      ${displayImage ? `<img src=${displayImage} alt=''/>` : img.outerHTML}
     </div>
     </div>
     <p>

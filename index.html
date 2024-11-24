@@ -7,17 +7,34 @@
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="./assets/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Navigation Bar -->
     <nav>
       <div class="navbar">
         <div class="logo">STUDENT BLOGGER: FUPRE CHAPTER</div>
-        <ul>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="desktop-menu">
           <li><a href="./about.html">About</a></li>
-          <li><a id="login" href="./login.html">Login</a></li>
-          <li><a id="sign-up" href="./signup.html">Sign Up</a></li>
-          <li><button id="log-out" class="hidden">Log Out</button></li>
+          <li><a class="login" href="./login.html">Login</a></li>
+          <li><a class="sign-up" href="./signup.html">Sign Up</a></li>
+          <li class="hidden"><button class="log-out">Log Out</button></li>
+        </ul>
+        <ul class="mobile-menu">
+          <li><a href="./about.html">About</a></li>
+          <li><a class="login" href="./login.html">Login</a></li>
+          <li><a class="sign-up" href="./signup.html">Sign Up</a></li>
+          <li class="hidden"><button class="log-out">Log Out</button></li>
         </ul>
       </div>
     </nav>
@@ -31,7 +48,7 @@
           class="header-logo"
         />
         <div class="welcome-text">
-          WELCOME TO FUPRE BLOG, <br />
+          WELCOME TO FUPRE BLOG <br />
           This is the general blog page where you can find the latest updates
           and posts.
         </div>
@@ -40,7 +57,9 @@
 
     <!-- Main Container -->
     <div class="main-container">
-      <div class="main-bar"></div>
+      <div class="main-bar">
+        <img src="./assets/images/User2.jpeg" class="hidden" alt="" />
+      </div>
 
       <div class="side-bar">
         <h3>Recent Posts</h3>
@@ -64,8 +83,9 @@
 
     <!-- Button -->
 
-    <button id="addPost" class="flex">
-      + <span id="addPostMessage" class="hidden add-message">Add new Post</span>
+    <button id="addPost" class="hidden">
+      <span class="plus">+</span>
+      <span id="addPostMessage" class="hidden add-message">Add new Post</span>
     </button>
 
     <form id="post-form" class="hidden">

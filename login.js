@@ -8,6 +8,14 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const login = document.getElementById("login-form");
 
+const hamburger = document.querySelector(".hamburger");
+hamburger.addEventListener("click", toggleMenuMobile);
+
+function toggleMenuMobile() {
+  hamburger.classList.toggle("close");
+  document.querySelector("ul.mobile-menu").classList.toggle("show-menu");
+}
+
 // const firebaseConfig = {
 //   apiKey: "AIzaSyDcIymAjKOf0uYEZqMWETyN_uIB3DYb2L4",
 //   authDomain: "university-student-blog.firebaseapp.com",
